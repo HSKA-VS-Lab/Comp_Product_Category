@@ -15,15 +15,16 @@ public class ConsumeCoreProduct {
 
     public Product[] getProducts() {
         Product [] products = restTemplate.getForObject(urlCoreProduct, Product[].class);
-        for (Product product : products) {
-            log.info(product.toString());
-        }
         return products;
     }
 
     public void addProduct(String name, double price, int categoryId, String details) {
         Product product = new Product(name, price, categoryId, details);
         restTemplate.postForLocation(urlCoreProduct, product);
+    }
+
+    public void deleteProduct(int id) {
+        restTemplate.delete(urlCoreProduct + "/" + id);
     }
 
 }

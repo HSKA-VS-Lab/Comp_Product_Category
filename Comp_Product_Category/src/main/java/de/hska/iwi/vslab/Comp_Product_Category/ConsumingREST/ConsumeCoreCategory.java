@@ -15,10 +15,11 @@ public class ConsumeCoreCategory {
 
     public Category[] getCategories() {
         Category [] categories = restTemplate.getForObject(urlCoreCategory, Category[].class);
-        for (Category category : categories) {
-            log.info(category.toString());
-        }
         return categories;
+    }
+
+    public void deleteCategory(int id) {
+        restTemplate.delete(urlCoreCategory + "/" + id);
     }
 
 }
