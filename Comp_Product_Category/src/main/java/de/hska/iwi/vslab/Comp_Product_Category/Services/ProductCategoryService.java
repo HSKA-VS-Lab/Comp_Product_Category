@@ -2,20 +2,27 @@ package de.hska.iwi.vslab.Comp_Product_Category.Services;
 
 import org.springframework.stereotype.Service;
 
+import de.hska.iwi.vslab.Comp_Product_Category.ConsumingREST.Category;
+import de.hska.iwi.vslab.Comp_Product_Category.ConsumingREST.ConsumeCoreCategory;
+import de.hska.iwi.vslab.Comp_Product_Category.ConsumingREST.ConsumeCoreProduct;
+
 /** 
  * The implementation of the service.
  */
 @Service
 public class ProductCategoryService {
 
-    private String urlDB = "http://localhost:8080/";
-
-    private String urlCoreCategory = "http://localhost:8080/category";
-
-    private String urlCoreProduct = "http://localhost:8080/product";
-
-    public void addProduct(String name, double price, String details, int categoryId) { 
+    public void addProduct(String name, double price, int categoryId, String details) { 
+        ConsumeCoreCategory coreCategory = new ConsumeCoreCategory();
+        Category[] categories = coreCategory.getCategories();
         
+        loop: for (Category cat : categories) {
+            if (cat.getId() == categoryId) {
+                ConsumeCoreProduct coreProduct = new ConsumeCoreProduct();
+                coreProduct.addProduct(name, price, categoryId, details);
+                break loop;
+            }
+        }
     }
 
     public long deleteCategory(int id){

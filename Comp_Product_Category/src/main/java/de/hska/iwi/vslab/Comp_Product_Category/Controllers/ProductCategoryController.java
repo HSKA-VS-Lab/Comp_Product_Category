@@ -15,10 +15,10 @@ public class ProductCategoryController {
      * Checks if categoryId actually exists, if yes then the product is added. 
      */
     @PostMapping("/comp_product_category/product/{id}")
-    public void addProduct(@RequestBody String name, double price, String details, int categoryId) { 
+    public void addProduct(@RequestBody String name, double price, int categoryId, String details) { 
         // TODO REST Schema as param?
         // TODO what if no? a return value?
-        productCategoryService.addProduct(name, price, details, categoryId);
+        productCategoryService.addProduct(name, price, categoryId, details);
     }
 
     /**

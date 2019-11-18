@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import de.hska.iwi.vslab.Comp_Product_Category.ConsumingREST.ConsumeCoreCategory;
 import de.hska.iwi.vslab.Comp_Product_Category.ConsumingREST.ConsumeCoreProduct;
 import de.hska.iwi.vslab.Comp_Product_Category.Controllers.ProductCategoryController;
 import de.hska.iwi.vslab.Comp_Product_Category.Services.ProductCategoryService;
@@ -21,8 +22,16 @@ public class CompProductCategoryApplication {
 		return (args) -> {
 			ProductCategoryController controller = new ProductCategoryController();
 
-			ConsumeCoreProduct productService = new ConsumeCoreProduct(); 
-			productService.execute();
+			ConsumeCoreCategory categoryService = new ConsumeCoreCategory();
+			categoryService.getCategories();
+
+			ProductCategoryService productService = new ProductCategoryService(); 
+			productService.addProduct("Banana", 1.3, 1, "BANANA");
+			
+			ConsumeCoreProduct consumeProductService = new ConsumeCoreProduct(); 
+			consumeProductService.getProducts();
+
+
 			//controller.addProduct(name, price, details, "Obst");
 			// add a product and delete a category
 		};

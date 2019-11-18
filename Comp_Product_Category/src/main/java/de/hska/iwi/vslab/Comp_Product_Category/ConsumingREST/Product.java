@@ -5,15 +5,31 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
-    int id;
-    String name;
-    double price;
-    String details;
-    int categoryIdFromProduct;
+    private int id = 999; // this value is determined by the core service
+    private String name;
+    private double price;
+    private String details;
+    private int categoryIdFromProduct;
+
+    // the framework needs a default constructor for whatever reason..
+    private Product() {
+        name = "unknown";
+        price = 0.0;
+        details = "";
+        categoryIdFromProduct = 0;
+    }
+
+    public Product(String name, double price, int categoryIdFromProduct, String details) {
+        this.name = name;
+        this.price = price;
+        this.details = details;
+        this.categoryIdFromProduct = categoryIdFromProduct;
+    }
 
     @Override
     public String toString() {
-        return "Product{ ID=" + id + ", name=" + name + ", details=" + details + ", categoryIdFromProduct=" + categoryIdFromProduct + "}";
+        return String.format("Product[name='%s', price=%e, categoryId=%d, details='%s']", name, price, categoryIdFromProduct,
+        details);
     }
 
     /**
