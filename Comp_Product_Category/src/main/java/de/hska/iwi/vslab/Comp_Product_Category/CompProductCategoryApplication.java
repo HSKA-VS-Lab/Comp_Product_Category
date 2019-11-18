@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 import de.hska.iwi.vslab.Comp_Product_Category.ConsumingREST.Category;
@@ -14,6 +15,7 @@ import de.hska.iwi.vslab.Comp_Product_Category.ConsumingREST.Product;
 import de.hska.iwi.vslab.Comp_Product_Category.Controllers.ProductCategoryController;
 import de.hska.iwi.vslab.Comp_Product_Category.Services.ProductCategoryService;
 
+@EnableEurekaClient
 @SpringBootApplication
 public class CompProductCategoryApplication {
 
@@ -23,7 +25,7 @@ public class CompProductCategoryApplication {
 		SpringApplication.run(CompProductCategoryApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public CommandLineRunner demo() {
 		return (args) -> {
 			log.info("Demo starting:");
@@ -55,6 +57,6 @@ public class CompProductCategoryApplication {
 			
 			log.info("Demo finishing.");
 		};
-	}
+	}*/
 
 }
