@@ -9,26 +9,26 @@ public class Product {
     private String name;
     private double price;
     private String details;
-    private int categoryIdFromProduct;
+    private int categoryId;
 
     // the framework needs a default constructor for whatever reason..
     private Product() {
         name = "unknown";
         price = 0.0;
         details = "";
-        categoryIdFromProduct = 0;
+        categoryId = 0;
     }
 
-    public Product(String name, double price, int categoryIdFromProduct, String details) {
+    public Product(String name, double price, int categoryId, String details) {
         this.name = name;
         this.price = price;
         this.details = details;
-        this.categoryIdFromProduct = categoryIdFromProduct;
+        this.categoryId = categoryId;
     }
 
     @Override
     public String toString() {
-        return String.format("Product[name='%s', price=%e, categoryId=%d, details='%s']", name, price, categoryIdFromProduct,
+        return String.format("Product[name='%s', price=%e, categoryId=%d, details='%s']", name, price, categoryId,
         details);
     }
 
@@ -59,8 +59,8 @@ public class Product {
     /**
      * @return the categoryIdFromProduct
      */
-    public int getCategoryIdFromProduct() {
-        return categoryIdFromProduct;
+    public int getCategoryId() {
+        return categoryId;
     }
 
 }
