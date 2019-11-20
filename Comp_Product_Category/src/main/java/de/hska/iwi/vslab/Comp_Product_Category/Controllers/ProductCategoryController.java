@@ -18,7 +18,7 @@ public class ProductCategoryController {
     /**
      * Checks if categoryId actually exists, if yes then the product is added. 
      */
-    @PostMapping("/comp_product_category/product")
+    @PostMapping("/comp_product_category/product", consumes = "form-data")
     public void addProduct(@RequestBody String name, double price, int categoryId, String details) { 
         log.info("addProduct(name, price, categoryId, details) was called");
         productCategoryService.addProduct(name, price, categoryId, details);
