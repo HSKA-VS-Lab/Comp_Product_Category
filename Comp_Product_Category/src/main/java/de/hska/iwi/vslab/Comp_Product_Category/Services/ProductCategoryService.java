@@ -7,16 +7,16 @@ import de.hska.iwi.vslab.Comp_Product_Category.ConsumingREST.ConsumeCoreCategory
 import de.hska.iwi.vslab.Comp_Product_Category.ConsumingREST.ConsumeCoreProduct;
 import de.hska.iwi.vslab.Comp_Product_Category.ConsumingREST.Product;
 
-/** 
+/**
  * The implementation of the service.
  */
 @Service
 public class ProductCategoryService {
 
-    public void addProduct(String name, double price, int categoryId, String details) { 
+    public void addProduct(String name, Double price, Integer categoryId, String details) {
         ConsumeCoreCategory coreCategory = new ConsumeCoreCategory();
         Category[] categories = coreCategory.getCategories();
-        
+
         loop: for (Category cat : categories) {
             if (cat.getId() == categoryId) {
                 ConsumeCoreProduct coreProduct = new ConsumeCoreProduct();
@@ -26,7 +26,7 @@ public class ProductCategoryService {
         }
     }
 
-    public long deleteCategory(int id){
+    public long deleteCategory(int id) {
         ConsumeCoreCategory coreCategory = new ConsumeCoreCategory();
         coreCategory.deleteCategory(id);
 
@@ -39,5 +39,5 @@ public class ProductCategoryService {
         }
         return 0;
     }
-    
+
 }
