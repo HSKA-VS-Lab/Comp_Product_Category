@@ -7,24 +7,45 @@ import org.springframework.web.client.RestTemplate;
 
 public class ConsumeCoreProduct {
     
-    private static final Logger log = LoggerFactory.getLogger(ConsumeCoreProduct.class);
 
-    private String urlCoreProduct = "http://localhost:8080/product";
-    
+    //private String urlCoreProduct = "http://localhost:8080/product";
+
+    private static final Logger log = LoggerFactory.getLogger(ConsumeCoreProduct.class);
     RestTemplate restTemplate = new RestTemplate();
 
     public Product[] getProducts() {
-        Product [] products = restTemplate.getForObject(urlCoreProduct, Product[].class);
-        return products;
+        try {
+            UrlBuilder urlBuilder = new UrlBuilder();
+            log.info("URL:" + urlBuilder.getProductUrl());
+            Product [] products = restTemplate.getForObject(urlBuilder.getProductUrl(), Product[].class);
+            return products;
+        } catch (Exception e) {
+            System.out.println(e);
+            throw e;
+        }
     }
 
     public void addProduct(String name, double price, int categoryId, String details) {
-        Product product = new Product(name, price, categoryId, details);
-        restTemplate.postForLocation(urlCoreProduct, product);
+        try {
+            UrlBuilder urlBuilder = new UrlBuilder();
+            log.info("URL:" + urlBuilder.getProductUrl());
+            Product product = new Product(name, price, categoryId, details);
+            restTemplate.postForLocation(urlBuilder.getProductUrl(), product);
+        } catch (Exception e) {
+            System.out.println(e);
+            throw e;
+        }
     }
 
     public void deleteProduct(int id) {
-        restTemplate.delete(urlCoreProduct + "/" + id);
+        try {
+            UrlBuilder urlBuilder = new UrlBuilder();
+            log.info("URL:" + urlBuilder.getProductDeleteByIdUrl(id));
+            restTemplate.delete(urlBuilder.getProductDeleteByIdUrl(id));
+        } catch (Exception e) {
+            System.out.println(e);
+            throw e;
+        }
     }
 
 }

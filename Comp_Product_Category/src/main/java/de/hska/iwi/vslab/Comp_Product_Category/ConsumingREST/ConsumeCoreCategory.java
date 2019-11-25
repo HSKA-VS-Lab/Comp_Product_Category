@@ -7,19 +7,32 @@ import org.springframework.web.client.RestTemplate;
 
 public class ConsumeCoreCategory {
     
-    private static final Logger log = LoggerFactory.getLogger(ConsumeCoreCategory.class);
+    //private String urlCoreCategory = "http://localhost:8082/category";
 
-    private String urlCoreCategory = "http://localhost:8082/category";
-    
+    private static final Logger log = LoggerFactory.getLogger(ConsumeCoreCategory.class);
     RestTemplate restTemplate = new RestTemplate();
 
     public Category[] getCategories() {
-        Category [] categories = restTemplate.getForObject(urlCoreCategory, Category[].class);
-        return categories;
+        try {
+            UrlBuilder urlBuilder = new UrlBuilder();
+            log.info("URL:" + urlBuilder.getCategoryUrl());
+            Category [] categories = restTemplate.getForObject(urlBuilder.getCategoryUrl(), Category[].class);
+            return categories;
+        } catch (Exception e) {
+            System.out.println(e);
+            throw e;
+        }
     }
 
     public void deleteCategory(int id) {
-        restTemplate.delete(urlCoreCategory + "/" + id);
+        try {
+            UrlBuilder urlBuilder = new UrlBuilder();
+            log.info("URL:" + urlBuilder.getCategoryDeleteByIdUrl(id));
+            restTemplate.delete(urlBuilder.getCategoryDeleteByIdUrl(id));
+        } catch (Exception e) {
+            System.out.println(e);
+            throw e;
+        }
     }
 
 }
