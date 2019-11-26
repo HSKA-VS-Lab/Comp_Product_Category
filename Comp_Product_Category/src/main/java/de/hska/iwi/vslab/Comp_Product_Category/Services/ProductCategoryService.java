@@ -16,7 +16,6 @@ public class ProductCategoryService {
     public void addProduct(String name, Double price, Integer categoryId, String details) {
         ConsumeCoreCategory coreCategory = new ConsumeCoreCategory();
         Category[] categories = coreCategory.getCategories();
-
         loop: for (Category cat : categories) {
             if (cat.getId() == categoryId) {
                 ConsumeCoreProduct coreProduct = new ConsumeCoreProduct();

@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import de.hska.iwi.vslab.Comp_Product_Category.ConsumingREST.Product;
 
 @RestController
 public class ProductCategoryController {
@@ -18,10 +19,11 @@ public class ProductCategoryController {
     /**
      * Checks if categoryId actually exists, if yes then the product is added.
      */
-    @PostMapping(path = "/comp_product_category/product")
-    public void addProduct(@RequestBody String name, Double price, Integer categoryId, String details) {
+    @PostMapping(path = "/comp_product_category/product", consumes = "application/json")
+    public void addProduct(@RequestBody(required = true) Product request) {
         log.info("addProduct(name, price, categoryId, details) was called");
-        productCategoryService.addProduct(name, price, categoryId, details);
+        productCategoryService.addProduct(request.getName(), request.getPrice(), request.getCategoryId(),
+                request.getDetails());
     }
 
     /**

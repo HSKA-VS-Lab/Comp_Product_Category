@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Category {
 
-    private int id;
+    private Integer id;
     private String name;
 
     @Override
@@ -16,9 +16,10 @@ public class Category {
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
+
     /**
      * @return the name
      */
