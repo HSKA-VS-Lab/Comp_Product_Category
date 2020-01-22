@@ -23,9 +23,7 @@ public class ProductCategoryController {
      * Checks if categoryId actually exists, if yes then the product is added.
      */
     @PostMapping(path = "/comp_product_category/product", consumes = "application/json")
-    //@HystrixCommand(fallbackMethod = "defaultFallback")
     public void addProduct(@RequestBody(required = true) Product request) {
-        log.info("addProduct(name, price, categoryId, details) was called");
         productCategoryService.addProduct(request.getName(), request.getPrice(), request.getCategoryId(),
                 request.getDetails());
     }
@@ -34,13 +32,7 @@ public class ProductCategoryController {
      * Delete a category and all products that were in that category.
      */
     @DeleteMapping("/comp_product_category/category/{id}")
-    //@HystrixCommand(fallbackMethod = "defaultFallback")
     public void deleteCategory(@PathVariable int id) {
-        log.info("deleteCategory(id) was called");
         productCategoryService.deleteCategory(id);
-    }
-
-    public void defaultFallback(Throwable throwable) {
-        System.out.printf("DefaultFallback, exception=%s%n", throwable);
     }
 }
