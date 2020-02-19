@@ -26,8 +26,13 @@ public class UrlBuilder {
         LoadBalancerClient loadBalancer = BeanUtil.getBean(LoadBalancerClient.class);
         ServiceInstance si_core_product = loadBalancer.choose("core_product");
         ServiceInstance si_core_category = loadBalancer.choose("core_category");
-        this.baseUrl_core_product =  si_core_product.getUri().toString();
-        this.baseUrl_core_category = si_core_category.getUri().toString();
+        try{
+            this.baseUrl_core_product =  si_core_product.getUri().toString();
+            this.baseUrl_core_category = si_core_category.getUri().toString();
+        }catch(NullPointerException np_ex){
+            this.baseUrl_core_product = "http://coreproduct:8091";// Schreibweise siehe Docker-Compose
+            this.baseUrl_core_category = "http://corecategory:8082"; // Schreibweise siehe Docker-Compose
+        }
     }
 
 }
